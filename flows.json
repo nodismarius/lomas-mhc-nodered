@@ -283,7 +283,8 @@
                 "f5cd3aa206a2e760",
                 "b1b0108cf2d15a73",
                 "8f2e2e1970ab909e",
-                "92c9b7045c47346c"
+                "92c9b7045c47346c",
+                "819a735b1bf5a4c3"
             ]
         ]
     },
@@ -746,5 +747,56 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "819a735b1bf5a4c3",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"info_flags\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 840,
+        "wires": [
+            [
+                "ad23f8ec1b39b970"
+            ]
+        ]
+    },
+    {
+        "id": "ad23f8ec1b39b970",
+        "type": "ui-text",
+        "z": "b72ff8a98c4fd15a",
+        "group": "b7ed27f8da190684",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Status Flags",
+        "label": "Flags",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1050,
+        "y": 840,
+        "wires": []
     }
 ]
