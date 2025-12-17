@@ -204,7 +204,10 @@
         "x": 380,
         "y": 340,
         "wires": [
-            []
+            [
+                "4a83171e3a688fba",
+                "2a94cf03aeb63c08"
+            ]
         ]
     },
     {
@@ -1023,6 +1026,108 @@
         "statusType": "auto",
         "x": 950,
         "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "4a83171e3a688fba",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"unit_type\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 280,
+        "wires": [
+            [
+                "7029a0985ad5bb12"
+            ]
+        ]
+    },
+    {
+        "id": "2a94cf03aeb63c08",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"device_id\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 320,
+        "wires": [
+            [
+                "fab8fad69214b829"
+            ]
+        ]
+    },
+    {
+        "id": "7029a0985ad5bb12",
+        "type": "ui-text",
+        "z": "b72ff8a98c4fd15a",
+        "group": "b7ed27f8da190684",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "Charger Stage",
+        "label": "Device Type: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": true,
+        "font": "Arial Black,Arial Black,Gadget,sans-serif",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1000,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "fab8fad69214b829",
+        "type": "ui-text",
+        "z": "b72ff8a98c4fd15a",
+        "group": "2b70db4ff6f3070a",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "Device ID",
+        "label": "Device ID:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": true,
+        "font": "Arial Black,Arial Black,Gadget,sans-serif",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 980,
+        "y": 320,
         "wires": []
     }
 ]
