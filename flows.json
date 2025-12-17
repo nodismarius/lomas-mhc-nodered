@@ -83,7 +83,7 @@
         "ui": "c2dc28664e398cd8",
         "path": "/page1",
         "icon": "home",
-        "layout": "tabs",
+        "layout": "notebook",
         "theme": "d7338bc9eb9684a1",
         "breakpoints": [
             {
@@ -109,8 +109,8 @@
         ],
         "order": 1,
         "className": "",
-        "visible": true,
-        "disabled": false
+        "visible": "true",
+        "disabled": "false"
     },
     {
         "id": "2b70db4ff6f3070a",
