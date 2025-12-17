@@ -915,10 +915,10 @@
         "height": 3,
         "gtype": "gauge-34",
         "gstyle": "rounded",
-        "title": "gauge",
+        "title": "Float Time",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "units",
+        "units": "h",
         "icon": "",
         "prefix": "",
         "suffix": "",
@@ -950,7 +950,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1190,
+        "x": 1210,
         "y": 880,
         "wires": [
             []
