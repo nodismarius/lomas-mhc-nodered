@@ -155,6 +155,42 @@
         "groupType": "default"
     },
     {
+        "id": "d13b15fecca94984",
+        "type": "ui-page",
+        "name": "Page 2",
+        "ui": "c2dc28664e398cd8",
+        "path": "/page2",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d7338bc9eb9684a1",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 2,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
         "id": "16184caa5c9a6b16",
         "type": "modbus-read",
         "z": "b72ff8a98c4fd15a",
@@ -613,7 +649,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "mode": "custom",
-        "build": "string",
+        "build": "merged",
         "property": "payload",
         "propertyType": "msg",
         "key": "topic",
@@ -622,7 +658,7 @@
         "useparts": false,
         "accumulate": false,
         "timeout": "",
-        "count": "",
+        "count": "2",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
