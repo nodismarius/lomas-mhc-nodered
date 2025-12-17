@@ -886,7 +886,7 @@
         "type": "function",
         "z": "b72ff8a98c4fd15a",
         "name": "hours",
-        "func": "msg.payload = msg.payload / 60\nreturn msg;",
+        "func": "msg.payload = (msg.payload / 60).toFixed(2);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
