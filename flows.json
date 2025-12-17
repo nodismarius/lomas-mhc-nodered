@@ -612,7 +612,7 @@
         "type": "join",
         "z": "b72ff8a98c4fd15a",
         "name": "",
-        "mode": "auto",
+        "mode": "custom",
         "build": "string",
         "property": "payload",
         "propertyType": "msg",
