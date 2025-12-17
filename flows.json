@@ -797,7 +797,7 @@
         "className": "",
         "value": "payload",
         "valueType": "msg",
-        "x": 1050,
+        "x": 1030,
         "y": 840,
         "wires": []
     },
@@ -865,8 +865,8 @@
         "className": "",
         "value": "payload",
         "valueType": "msg",
-        "x": 1090,
-        "y": 900,
+        "x": 1050,
+        "y": 880,
         "wires": []
     },
     {
