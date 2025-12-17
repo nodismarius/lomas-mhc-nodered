@@ -1,1 +1,599 @@
-[]
+[
+    {
+        "id": "b72ff8a98c4fd15a",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b9fba18783d9509f",
+        "type": "modbus-client",
+        "name": "midnite",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.0.251",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "c2dc28664e398cd8",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "d7338bc9eb9684a1",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "8f70105477d90261",
+        "type": "ui-page",
+        "name": "MHC Lomas",
+        "ui": "c2dc28664e398cd8",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "tabs",
+        "theme": "d7338bc9eb9684a1",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "16"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "2b70db4ff6f3070a",
+        "type": "ui-group",
+        "name": "Real Time Status",
+        "page": "8f70105477d90261",
+        "width": "3",
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "44eebceeecbe645f",
+        "type": "ui-group",
+        "name": "Metrics",
+        "page": "8f70105477d90261",
+        "width": "3",
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "b7ed27f8da190684",
+        "type": "ui-group",
+        "name": "Device Info",
+        "page": "8f70105477d90261",
+        "width": "3",
+        "height": 1,
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "16184caa5c9a6b16",
+        "type": "modbus-read",
+        "z": "b72ff8a98c4fd15a",
+        "name": "Status Read",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "4100",
+        "quantity": "12",
+        "rate": "24",
+        "rateUnit": "m",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "b9fba18783d9509f",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 210,
+        "y": 380,
+        "wires": [
+            [
+                "7f082f24fd5bd64c"
+            ],
+            [
+                "7c542e7e1949162f"
+            ]
+        ]
+    },
+    {
+        "id": "7f082f24fd5bd64c",
+        "type": "function",
+        "z": "b72ff8a98c4fd15a",
+        "name": "parseStaticArray",
+        "func": "// msg.payload is an array of 12 numbers (registers 4101 to 4112)\nconst staticRegs = msg.payload;\n\n// Helper function for unit type mapping (from table 4101-1)\nfunction getUnitType(lsb) {\n  const unitTypes = {\n    150: 'Classic 150',\n    200: 'Classic 200',\n    250: 'Classic 250',\n    251: 'Classic 250 KS'\n  };\n  return unitTypes[lsb] || 'Unknown';\n}\n\nconst staticInfo = {\n  pcb_revision: Number(staticRegs[0]) >> 8,  // 4101 MSB\n  unit_type: getUnitType(Number(staticRegs[0]) & 0xFF),  // 4101 LSB\n  firmware_date: `${Number(staticRegs[1])}-${String(Number(staticRegs[2]) >> 8).padStart(2, '0')}-${String(Number(staticRegs[2]) & 0xFF).padStart(2, '0')}`,  // 4102-4103\n  mac_address: `${Number(staticRegs[7]) >> 8}:${Number(staticRegs[7]) & 0xFF}:${Number(staticRegs[6]) >> 8}:${Number(staticRegs[6]) & 0xFF}:${Number(staticRegs[5]) >> 8}:${Number(staticRegs[5]) & 0xFF}`,  // 4106-4108\n  device_id: (Number(staticRegs[11]) << 16) + Number(staticRegs[10]),  // 4111-4112\n  whizbang_crc_good: !!(Number(staticRegs[3]) & 0x0001),  // 4104\n  wbjr_net_ah: (Number(staticRegs[9]) << 16) + Number(staticRegs[8])  // 4109-4110\n};\n\n// Store in global context\nglobal.set('classicStatic', staticInfo);\n\n// Optional: Pass through or debug\nmsg.payload = staticInfo;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c542e7e1949162f",
+        "type": "modbus-response",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 450,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "eb2f08d282408a7a",
+        "type": "modbus-read",
+        "z": "b72ff8a98c4fd15a",
+        "name": "Status Read",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "4113",
+        "quantity": "31",
+        "rate": "25",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "b9fba18783d9509f",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 190,
+        "y": 600,
+        "wires": [
+            [
+                "34361ff451eeb349"
+            ],
+            [
+                "1cc0d48ae4538929"
+            ]
+        ]
+    },
+    {
+        "id": "1cc0d48ae4538929",
+        "type": "modbus-response",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 470,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "34361ff451eeb349",
+        "type": "function",
+        "z": "b72ff8a98c4fd15a",
+        "name": "function 1",
+        "func": "// msg.payload is an array of 31 numbers (registers 4114 to 4144)\nconst dynamicRegs = msg.payload;\nconst staticInfo = global.get('classicStatic') || {};  // Fallback if not set yet\n\n// Helper functions for mappings (add these)\nfunction getChargeStage(msb) {\n    const stages = {\n        0: 'Resting',\n        3: 'Absorb',\n        4: 'BulkMppt',\n        5: 'Float',\n        6: 'FloatMppt',\n        7: 'Equalize',\n        10: 'HyperVoc',\n        18: 'EqMppt'\n    };\n    return stages[msb] || 'Unknown';\n}\n\nfunction getChargeState(lsb) {\n    const states = {\n        0: 'Resting',\n        1: 'Waking/Starting',\n        2: 'Waking/Starting',\n        3: 'MPPT/Regulating Voltage',\n        4: 'MPPT/Regulating Voltage',\n        6: 'MPPT/Regulating Voltage'\n    };\n    return states[lsb] || 'Unknown';\n}\n\nfunction getInfoFlags(flags32) {\n    const flagMap = {\n        0x00000001: 'Classic Over Temperature',\n        0x00000002: 'EEPROM error',\n        0x00000004: 'SerialWriteLock',\n        0x00000008: 'Equalize In Progress',\n        0x00000080: 'EQ MPPT',\n        0x00000100: 'In V is Lower Than Out',\n        0x00000200: 'Current Limit',\n        0x00000400: 'HyperVoc',\n        0x00002000: 'Battery Temp Sensor Installed',\n        0x00004000: 'Aux1 State On',\n        0x00008000: 'Aux2 State On',\n        0x00010000: 'GroundFaultF',\n        0x00020000: 'OCP (Over Current Protect)',\n        0x00040000: 'ArcFaultF',\n        0x00080000: 'NegBatCurrentF',\n        0x00200000: 'XtraInfo2DsplayF',\n        0x00400000: 'PvPartialShadeF',\n        0x00800000: 'WatchdogResetF',\n        0x01000000: 'LowBatteryVF',\n        0x02000000: 'StackJumperF',\n        0x04000000: 'EqDoneF',\n        0x08000000: 'TempCompShortedF',\n        0x10000000: 'UN-LockJumperF',\n        0x20000000: 'XtraJumperF',\n        0x40000000: 'InputShortedF'\n    };\n    const activeFlags = [];\n    for (const [value, desc] of Object.entries(flagMap)) {\n        if (flags32 & value) activeFlags.push(desc);\n    }\n    return activeFlags;\n}\n\n// Parse dynamic (adjusted indices: subtract 13 from original)\nconst status = {\n    restart_timer_ms: Number(dynamicRegs[0]),  // 4114\n    battery_voltage: Number(dynamicRegs[1]) / 10,  // 4115\n    pv_voltage: Number(dynamicRegs[2]) / 10,  // 4116\n    battery_current: Number(dynamicRegs[3]) / 10,  // 4117\n    daily_kwh: Number(dynamicRegs[4]) / 10,  // 4118 (for metrics.daily.kwh)\n    power_watts: Number(dynamicRegs[5]),  // 4119\n    charge_stage: getChargeStage(Number(dynamicRegs[6]) >> 8),  // 4120 MSB\n    charge_state: getChargeState(Number(dynamicRegs[6]) & 0xFF),  // 4120 LSB\n    pv_current: Number(dynamicRegs[7]) / 10,  // 4121\n    last_voc: Number(dynamicRegs[8]) / 10,  // 4122\n    highest_input_v: Number(dynamicRegs[9]) / 10,  // 4123\n    daily_ah: Number(dynamicRegs[11]),  // 4125 (skip 4124 wind)\n    // Lifetime from dynamic (or move to semi-static if desired)\n    lifetime_kwh: ((Number(dynamicRegs[13]) << 16) + Number(dynamicRegs[12])),  // 4126-4127\n    lifetime_ah: ((Number(dynamicRegs[15]) << 16) + Number(dynamicRegs[14])),  // 4128-4129\n    info_flags: getInfoFlags((Number(dynamicRegs[17]) << 16) + Number(dynamicRegs[16])),  // 4130-4131\n    battery_temp: Number(dynamicRegs[18]) / 10,  // 4132\n    fet_temp: Number(dynamicRegs[19]) / 10,  // 4133\n    pcb_temp: Number(dynamicRegs[20]) / 10,  // 4134\n    night_minutes_no_pwr: Number(dynamicRegs[21]),  // 4135\n    float_time_today_sec: Number(dynamicRegs[24]),  // 4138\n    absorb_time_sec: Number(dynamicRegs[25]),  // 4139\n    pwm_duty: Number(dynamicRegs[27]),  // 4141\n    reset_reason: Number(dynamicRegs[28]),  // 4142\n    eq_time_sec: Number(dynamicRegs[29])  // 4143\n};\n\nconst metrics = {\n    daily: {\n        kwh: status.daily_kwh,\n        ah: status.daily_ah\n    },\n    lifetime: {\n        kwh: status.lifetime_kwh,\n        ah: status.lifetime_ah\n    }\n};\n\nconst info = { ...staticInfo };  // Merge static\n\nmsg.payload = { status, metrics, info };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 4,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 580,
+        "wires": [
+            [
+                "7ddf5ff233ffd7ab",
+                "d809dd4c1c0e9044",
+                "f5cd3aa206a2e760",
+                "b1b0108cf2d15a73"
+            ]
+        ]
+    },
+    {
+        "id": "5f6b1b8384a441b6",
+        "type": "debug",
+        "z": "b72ff8a98c4fd15a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "0dbcdd16edefa853",
+        "type": "ui-gauge",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "group": "2b70db4ff6f3070a",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Voltaj Baterie",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Volts",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": 10,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1250,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ddf5ff233ffd7ab",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"battery_voltage\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 580,
+        "wires": [
+            [
+                "5f6b1b8384a441b6",
+                "0dbcdd16edefa853"
+            ]
+        ]
+    },
+    {
+        "id": "869b7470b6499885",
+        "type": "ui-gauge",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "group": "2b70db4ff6f3070a",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Tensiune Turbina",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Volts",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "160",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "200",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "230",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1270,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d809dd4c1c0e9044",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"pv_voltage\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 640,
+        "wires": [
+            [
+                "869b7470b6499885"
+            ]
+        ]
+    },
+    {
+        "id": "f5cd3aa206a2e760",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"power_watts\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 700,
+        "wires": [
+            [
+                "529f4cbcded4d0cf"
+            ]
+        ]
+    },
+    {
+        "id": "529f4cbcded4d0cf",
+        "type": "ui-gauge",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "group": "2b70db4ff6f3070a",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Putere Turbina",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Wats",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1500",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "2000",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "2500",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1260,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80c8c3bfa84c6846",
+        "type": "ui-text",
+        "z": "b72ff8a98c4fd15a",
+        "group": "2b70db4ff6f3070a",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Charger Stage",
+        "label": "Faza Incarcare:",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "Arial Black,Arial Black,Gadget,sans-serif",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1300,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "b1b0108cf2d15a73",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"charge_stage\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 780,
+        "wires": [
+            [
+                "80c8c3bfa84c6846"
+            ]
+        ]
+    }
+]
