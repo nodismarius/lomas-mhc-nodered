@@ -840,8 +840,8 @@
         "y": 880,
         "wires": [
             [
-                "baef2208cd4be0f3",
-                "fbfa03cf064d7f51"
+                "fbfa03cf064d7f51",
+                "6e2307c28b90db8b"
             ]
         ]
     },
@@ -884,5 +884,25 @@
         "x": 1000,
         "y": 520,
         "wires": []
+    },
+    {
+        "id": "6e2307c28b90db8b",
+        "type": "function",
+        "z": "b72ff8a98c4fd15a",
+        "name": "minutes",
+        "func": "msg.payload = msg.payload / 60\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 880,
+        "wires": [
+            [
+                "baef2208cd4be0f3"
+            ]
+        ]
     }
 ]
