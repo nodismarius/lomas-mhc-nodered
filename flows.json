@@ -83,7 +83,7 @@
         "ui": "c2dc28664e398cd8",
         "path": "/page1",
         "icon": "home",
-        "layout": "notebook",
+        "layout": "grid",
         "theme": "d7338bc9eb9684a1",
         "breakpoints": [
             {
