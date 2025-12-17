@@ -281,7 +281,8 @@
                 "7ddf5ff233ffd7ab",
                 "d809dd4c1c0e9044",
                 "f5cd3aa206a2e760",
-                "b1b0108cf2d15a73"
+                "b1b0108cf2d15a73",
+                "8f2e2e1970ab909e"
             ]
         ]
     },
@@ -565,8 +566,8 @@
         "className": "",
         "value": "payload",
         "valueType": "msg",
-        "x": 1300,
-        "y": 780,
+        "x": 1360,
+        "y": 800,
         "wires": []
     },
     {
@@ -590,6 +591,62 @@
         "reg": false,
         "x": 1020,
         "y": 780,
+        "wires": [
+            [
+                "37fd251c56a0a8f6"
+            ]
+        ]
+    },
+    {
+        "id": "8f2e2e1970ab909e",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"charge_state\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 840,
+        "wires": [
+            [
+                "37fd251c56a0a8f6"
+            ]
+        ]
+    },
+    {
+        "id": "37fd251c56a0a8f6",
+        "type": "join",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1190,
+        "y": 800,
         "wires": [
             [
                 "80c8c3bfa84c6846"
