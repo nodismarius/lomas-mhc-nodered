@@ -284,7 +284,8 @@
                 "b1b0108cf2d15a73",
                 "8f2e2e1970ab909e",
                 "92c9b7045c47346c",
-                "819a735b1bf5a4c3"
+                "819a735b1bf5a4c3",
+                "0a32fcfaf0c0f46a"
             ]
         ]
     },
@@ -781,11 +782,11 @@
         "type": "ui-text",
         "z": "b72ff8a98c4fd15a",
         "group": "b7ed27f8da190684",
-        "order": 0,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "Status Flags",
-        "label": "Flags",
+        "label": "Flags: ",
         "format": "{{msg.payload}}",
         "layout": "row-left",
         "style": false,
@@ -812,8 +813,76 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 990,
+        "x": 980,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "0a32fcfaf0c0f46a",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"float_time_today_sec\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 880,
+        "wires": [
+            [
+                "baef2208cd4be0f3",
+                "fbfa03cf064d7f51"
+            ]
+        ]
+    },
+    {
+        "id": "baef2208cd4be0f3",
+        "type": "ui-text",
+        "z": "b72ff8a98c4fd15a",
+        "group": "b7ed27f8da190684",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Float Time Today: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1090,
         "y": 900,
+        "wires": []
+    },
+    {
+        "id": "fbfa03cf064d7f51",
+        "type": "debug",
+        "z": "b72ff8a98c4fd15a",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 520,
         "wires": []
     }
 ]
