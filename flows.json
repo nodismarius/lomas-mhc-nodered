@@ -703,7 +703,7 @@
         "suffix": "",
         "segments": [
             {
-                "from": "0",
+                "from": "-10",
                 "color": "#ea5353",
                 "text": "",
                 "textType": "label"
