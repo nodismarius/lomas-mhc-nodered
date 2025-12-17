@@ -337,7 +337,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1030,
+        "x": 1210,
         "y": 600,
         "wires": [
             []
@@ -418,7 +418,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1050,
+        "x": 1230,
         "y": 640,
         "wires": [
             []
@@ -526,7 +526,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1040,
+        "x": 1220,
         "y": 680,
         "wires": [
             []
@@ -552,7 +552,7 @@
         "className": "",
         "value": "payload",
         "valueType": "msg",
-        "x": 1040,
+        "x": 1220,
         "y": 740,
         "wires": []
     },
@@ -743,7 +743,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1020,
+        "x": 1200,
         "y": 800,
         "wires": [
             []
@@ -782,7 +782,7 @@
         "type": "ui-text",
         "z": "b72ff8a98c4fd15a",
         "group": "b7ed27f8da190684",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "name": "Status Flags",
@@ -797,7 +797,7 @@
         "className": "",
         "value": "payload",
         "valueType": "msg",
-        "x": 1030,
+        "x": 1210,
         "y": 840,
         "wires": []
     },
@@ -846,30 +846,6 @@
         ]
     },
     {
-        "id": "baef2208cd4be0f3",
-        "type": "ui-text",
-        "z": "b72ff8a98c4fd15a",
-        "group": "b7ed27f8da190684",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Float Time Today: ",
-        "format": "{{msg.payload}}",
-        "layout": "row-left",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#717171",
-        "wrapText": false,
-        "className": "",
-        "value": "payload",
-        "valueType": "msg",
-        "x": 1050,
-        "y": 880,
-        "wires": []
-    },
-    {
         "id": "fbfa03cf064d7f51",
         "type": "debug",
         "z": "b72ff8a98c4fd15a",
@@ -901,8 +877,82 @@
         "y": 880,
         "wires": [
             [
-                "baef2208cd4be0f3"
+                "f04b452e88857c88"
             ]
+        ]
+    },
+    {
+        "id": "f04b452e88857c88",
+        "type": "function",
+        "z": "b72ff8a98c4fd15a",
+        "name": "hours",
+        "func": "msg.payload = msg.payload / 60\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 880,
+        "wires": [
+            [
+                "b5a7c2fa28d00211"
+            ]
+        ]
+    },
+    {
+        "id": "b5a7c2fa28d00211",
+        "type": "ui-gauge",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "group": "44eebceeecbe645f",
+        "order": 0,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-tile",
+        "gstyle": "needle",
+        "title": "gauge",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "2.4",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "12",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "20",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "24",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1190,
+        "y": 880,
+        "wires": [
+            []
         ]
     }
 ]
