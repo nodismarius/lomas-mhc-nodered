@@ -994,7 +994,7 @@
         "width": 0,
         "height": 0,
         "name": "Lifetime Power",
-        "label": "Flags: ",
+        "label": "Lifetime Power: ",
         "format": "{{msg.payload}}",
         "layout": "row-left",
         "style": false,
