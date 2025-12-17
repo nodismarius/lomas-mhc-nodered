@@ -782,7 +782,7 @@
         "type": "ui-text",
         "z": "b72ff8a98c4fd15a",
         "group": "b7ed27f8da190684",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "Status Flags",
@@ -908,7 +908,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "44eebceeecbe645f",
-        "order": 0,
+        "order": 1,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -970,6 +970,108 @@
         "statusType": "auto",
         "x": 1150,
         "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c6b1dd076309fabc",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"daily_kwh\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 920,
+        "wires": [
+            [
+                "7acc2d4589897061"
+            ]
+        ]
+    },
+    {
+        "id": "15ca2f4515e758bc",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"lifetime_kwh\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 960,
+        "wires": [
+            [
+                "48c35f0b074a1186"
+            ]
+        ]
+    },
+    {
+        "id": "7acc2d4589897061",
+        "type": "ui-text",
+        "z": "b72ff8a98c4fd15a",
+        "group": "44eebceeecbe645f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Daily Power",
+        "label": "Daily Power:  ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1210,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "48c35f0b074a1186",
+        "type": "ui-text",
+        "z": "b72ff8a98c4fd15a",
+        "group": "44eebceeecbe645f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Lifetime Power",
+        "label": "Flags: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1220,
+        "y": 960,
         "wires": []
     }
 ]
