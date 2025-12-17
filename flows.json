@@ -1038,7 +1038,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "$lookup($$.payload.status, \"unit_type\")",
+                "to": "$lookup($$.payload.staticInfo, \"unit_type\")",
                 "tot": "jsonata"
             }
         ],
@@ -1066,7 +1066,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "$lookup($$.payload.status, \"device_id\")",
+                "to": "$lookup($$.payload.staticInfo, \"device_id\")",
                 "tot": "jsonata"
             }
         ],
