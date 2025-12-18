@@ -330,7 +330,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "2b70db4ff6f3070a",
-        "order": 2,
+        "order": 3,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -411,7 +411,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "2b70db4ff6f3070a",
-        "order": 4,
+        "order": 5,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -572,7 +572,7 @@
         "type": "ui-text",
         "z": "b72ff8a98c4fd15a",
         "group": "2b70db4ff6f3070a",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "name": "Charger Stage",
@@ -707,7 +707,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "BatTemp",
         "group": "2b70db4ff6f3070a",
-        "order": 3,
+        "order": 4,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -1317,26 +1317,8 @@
         "x": 800,
         "y": 1340,
         "wires": [
-            [
-                "8cfcb3d091141c26"
-            ]
+            []
         ]
-    },
-    {
-        "id": "8cfcb3d091141c26",
-        "type": "debug",
-        "z": "b72ff8a98c4fd15a",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1230,
-        "y": 1260,
-        "wires": []
     },
     {
         "id": "55ca63e347351a66",
@@ -1360,9 +1342,7 @@
         "x": 800,
         "y": 1380,
         "wires": [
-            [
-                "8cfcb3d091141c26"
-            ]
+            []
         ]
     },
     {
@@ -1387,9 +1367,7 @@
         "x": 800,
         "y": 1420,
         "wires": [
-            [
-                "8cfcb3d091141c26"
-            ]
+            []
         ]
     },
     {
@@ -1415,8 +1393,62 @@
         "y": 1460,
         "wires": [
             [
-                "8cfcb3d091141c26"
+                "477948c30c91c5e0"
             ]
+        ]
+    },
+    {
+        "id": "477948c30c91c5e0",
+        "type": "ui-gauge",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "group": "2b70db4ff6f3070a",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Consum ",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Wats",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1500",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "2000",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "2500",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1180,
+        "y": 1460,
+        "wires": [
+            []
         ]
     }
 ]
