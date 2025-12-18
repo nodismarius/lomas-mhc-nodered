@@ -572,7 +572,7 @@
         "type": "ui-text",
         "z": "b72ff8a98c4fd15a",
         "group": "2b70db4ff6f3070a",
-        "order": 6,
+        "order": 8,
         "width": 0,
         "height": 0,
         "name": "Charger Stage",
@@ -1317,7 +1317,9 @@
         "x": 800,
         "y": 1340,
         "wires": [
-            []
+            [
+                "9d38a5248ebe52e2"
+            ]
         ]
     },
     {
@@ -1342,7 +1344,9 @@
         "x": 800,
         "y": 1380,
         "wires": [
-            []
+            [
+                "36b818d53a9539ae"
+            ]
         ]
     },
     {
@@ -1447,6 +1451,114 @@
         "className": "",
         "x": 1180,
         "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d38a5248ebe52e2",
+        "type": "ui-gauge",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "group": "2b70db4ff6f3070a",
+        "order": 6,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Tensiune Retea",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Volts",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": 10,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1200,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36b818d53a9539ae",
+        "type": "ui-gauge",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "group": "2b70db4ff6f3070a",
+        "order": 7,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Frecventa Retea",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Hertz",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "45",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "55",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ff0026",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": "45",
+        "max": "60",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1210,
+        "y": 1380,
         "wires": [
             []
         ]
