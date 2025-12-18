@@ -1156,7 +1156,7 @@
         "unitid": "10",
         "dataType": "HoldingRegister",
         "adr": "0x0000",
-        "quantity": "1",
+        "quantity": "8",
         "rate": "2",
         "rateUnit": "s",
         "delayOnStart": false,
@@ -1171,7 +1171,7 @@
         "y": 1120,
         "wires": [
             [
-                "f9b67163c5de79a4"
+                "b0e63c4007d83937"
             ],
             []
         ]
@@ -1191,5 +1191,25 @@
         "x": 870,
         "y": 1300,
         "wires": []
+    },
+    {
+        "id": "b0e63c4007d83937",
+        "type": "function",
+        "z": "b72ff8a98c4fd15a",
+        "name": "function 2",
+        "func": "// msg.payload is an array of uint16 (e.g., from Modbus Holding Registers read)\nconst regs = msg.payload;\n\nlet deviceName = '';\nfor (let reg of regs) {\n  deviceName += String.fromCharCode((Number(reg) >> 8) & 0xFF) + String.fromCharCode(Number(reg) & 0xFF);\n}\n\n// Trim null chars (common padding in Modbus strings)\ndeviceName = deviceName.replace(/\\0/g, '').trim();\n\n// Output as JSON (add to your structure)\nmsg.payload = { info: { device_name: deviceName } };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1160,
+        "wires": [
+            [
+                "f9b67163c5de79a4"
+            ]
+        ]
     }
 ]
