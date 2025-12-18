@@ -1311,7 +1311,9 @@
             [
                 "97fafa5a78218665"
             ],
-            []
+            [
+                "9998c58c4dfb7216"
+            ]
         ]
     },
     {
@@ -1348,6 +1350,22 @@
         "statusType": "auto",
         "x": 1890,
         "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "9998c58c4dfb7216",
+        "type": "debug",
+        "z": "b72ff8a98c4fd15a",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 1420,
         "wires": []
     }
 ]
