@@ -490,7 +490,7 @@
         "id": "f5cd3aa206a2e760",
         "type": "change",
         "z": "b72ff8a98c4fd15a",
-        "name": "",
+        "name": "turbinePower",
         "rules": [
             {
                 "t": "set",
@@ -505,7 +505,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 680,
+        "x": 670,
         "y": 680,
         "wires": [
             [
@@ -1381,7 +1381,7 @@
         "id": "f207929caeaeaf64",
         "type": "change",
         "z": "b72ff8a98c4fd15a",
-        "name": "",
+        "name": "loadAC",
         "rules": [
             {
                 "t": "set",
@@ -1396,7 +1396,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 800,
+        "x": 780,
         "y": 1460,
         "wires": [
             [
@@ -1698,8 +1698,8 @@
         "height": 8,
         "className": "",
         "interpolation": "linear",
-        "x": 1540,
-        "y": 720,
+        "x": 1660,
+        "y": 700,
         "wires": [
             []
         ]
