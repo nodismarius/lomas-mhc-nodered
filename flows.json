@@ -1396,6 +1396,13 @@
                 "pt": "msg",
                 "to": "$lookup($$.payload.ac_load, \"power_w\")",
                 "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "loadAC",
+                "tot": "str"
             }
         ],
         "action": "",
