@@ -1319,7 +1319,7 @@
         "type": "function",
         "z": "b72ff8a98c4fd15a",
         "name": "AC parameters",
-        "func": "// msg.payload is array of 22 uint16 (regs 141-162 from address 0x008C quantity 22)\nconst regs = msg.payload;\n\n// Helpers\nfunction uint32(high, low) {\n  return (Number(high) << 16) + Number(low);\n}\n\nfunction sint32(high, low) {\n  let val = uint32(high, low);\n  return val > 0x7FFFFFFF ? val - 0x100000000 : val;\n}\n\nconst ac_load = {\n  voltage: uint32(regs[0], regs[1]) / 1000,         // Reg 141 (total V)\n  current: sint32(regs[10], regs[11]) / 1000,       // Reg 151 (total A)\n  frequency: Number(regs[12]) / 100,                // Reg 153 (Hz)\n  power_w: sint32(regs[14], regs[15]),              // Reg 155 (W)\n  power_va: sint32(regs[20], regs[21])              // Reg 161 (VA)\n};\n\nmsg.payload = { ac_load };\nreturn msg;",
+        "func": "// msg.payload is array of 22 uint16 (regs 141-162 from address 0x008C quantity 22)\nconst regs = msg.payload;\n\n// Helpers\nfunction uint32(high, low) {\n  return (Number(high) << 16) + Number(low);\n}\n\nfunction sint32(high, low) {\n  let val = uint32(high, low);\n  return val > 0x7FFFFFFF ? val - 0x100000000 : val;\n}\n\nconst ac_load = {\n  voltage: uint32(regs[1], regs[0]) / 1000,         // Reg 141 (total V)\n  current: sint32(regs[10], regs[11]) / 1000,       // Reg 151 (total A)\n  frequency: Number(regs[12]) / 100,                // Reg 153 (Hz)\n  power_w: sint32(regs[14], regs[15]),              // Reg 155 (W)\n  power_va: sint32(regs[20], regs[21])              // Reg 161 (VA)\n};\n\nmsg.payload = { ac_load };\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
