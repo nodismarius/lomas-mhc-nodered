@@ -1051,8 +1051,7 @@
         "y": 280,
         "wires": [
             [
-                "7029a0985ad5bb12",
-                "21c8ccfbb3e2dda3"
+                "7029a0985ad5bb12"
             ]
         ]
     },
@@ -1079,8 +1078,7 @@
         "y": 320,
         "wires": [
             [
-                "fab8fad69214b829",
-                "08fe552bb022cc1e"
+                "fab8fad69214b829"
             ]
         ]
     },
@@ -1089,7 +1087,7 @@
         "type": "ui-text",
         "z": "b72ff8a98c4fd15a",
         "group": "b7ed27f8da190684",
-        "order": 7,
+        "order": 3,
         "width": 0,
         "height": 0,
         "name": "Charger Stage",
@@ -1113,7 +1111,7 @@
         "type": "ui-text",
         "z": "b72ff8a98c4fd15a",
         "group": "b7ed27f8da190684",
-        "order": 6,
+        "order": 2,
         "width": 0,
         "height": 0,
         "name": "Device ID",
@@ -1130,38 +1128,6 @@
         "valueType": "msg",
         "x": 980,
         "y": 320,
-        "wires": []
-    },
-    {
-        "id": "21c8ccfbb3e2dda3",
-        "type": "debug",
-        "z": "b72ff8a98c4fd15a",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 850,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "08fe552bb022cc1e",
-        "type": "debug",
-        "z": "b72ff8a98c4fd15a",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 810,
-        "y": 380,
         "wires": []
     }
 ]
