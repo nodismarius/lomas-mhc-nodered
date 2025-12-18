@@ -1661,7 +1661,7 @@
         "xAxisFormatType": "auto",
         "xmin": "",
         "xmax": "",
-        "yAxisLabel": "",
+        "yAxisLabel": "Wats",
         "yAxisProperty": "payload",
         "yAxisPropertyType": "msg",
         "ymin": "0",
