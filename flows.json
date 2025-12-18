@@ -1156,7 +1156,7 @@
         "unitid": "",
         "dataType": "HoldingRegister",
         "adr": "0x0098",
-        "quantity": "2",
+        "quantity": "1",
         "rate": "2",
         "rateUnit": "s",
         "delayOnStart": false,
