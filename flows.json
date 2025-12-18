@@ -1144,39 +1144,6 @@
         "wires": []
     },
     {
-        "id": "8acc16014936bad3",
-        "type": "modbus-read",
-        "z": "b72ff8a98c4fd15a",
-        "name": "Read Registry Inverter Name",
-        "topic": "",
-        "showStatusActivities": false,
-        "logIOActivities": false,
-        "showErrors": false,
-        "showWarnings": true,
-        "unitid": "10",
-        "dataType": "HoldingRegister",
-        "adr": "0x0000",
-        "quantity": "8",
-        "rate": "5",
-        "rateUnit": "s",
-        "delayOnStart": false,
-        "enableDeformedMessages": false,
-        "startDelayTime": "",
-        "server": "9a6dc5e2e9734bda",
-        "useIOFile": false,
-        "ioFile": "",
-        "useIOForPayload": false,
-        "emptyMsgOnFail": false,
-        "x": 160,
-        "y": 1120,
-        "wires": [
-            [
-                "b0e63c4007d83937"
-            ],
-            []
-        ]
-    },
-    {
         "id": "b0e63c4007d83937",
         "type": "function",
         "z": "b72ff8a98c4fd15a",
@@ -1241,10 +1208,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
+        "x": 490,
         "y": 1240,
         "wires": [
-            []
+            [
+                "2e020aeaf572046f"
+            ]
         ]
     },
     {
@@ -1317,19 +1286,17 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 700,
+        "x": 860,
         "y": 1120,
         "wires": [
-            [
-                "17e3a6c009f5e52b"
-            ]
+            []
         ]
     },
     {
-        "id": "17e3a6c009f5e52b",
+        "id": "2e020aeaf572046f",
         "type": "debug",
         "z": "b72ff8a98c4fd15a",
-        "name": "debug 1",
+        "name": "debug 2",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -1337,8 +1304,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1230,
-        "y": 1120,
+        "x": 870,
+        "y": 1240,
         "wires": []
     }
 ]
