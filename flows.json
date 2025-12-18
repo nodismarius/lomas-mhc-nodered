@@ -1396,11 +1396,9 @@
         "y": 1480,
         "wires": [
             [
-                "b2c75db199112fe5"
+                "dd213f547ebc92e4"
             ],
-            [
-                "bc9f2d271f8f2708"
-            ]
+            []
         ]
     },
     {
@@ -1415,24 +1413,28 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 570,
-        "y": 1520,
+        "x": 800,
+        "y": 1500,
         "wires": []
     },
     {
-        "id": "bc9f2d271f8f2708",
-        "type": "debug",
+        "id": "dd213f547ebc92e4",
+        "type": "function",
         "z": "b72ff8a98c4fd15a",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 450,
-        "y": 1580,
-        "wires": []
+        "name": "AC parameters",
+        "func": "// msg.payload is array of 2 uint16 (high word index 0, low word index 1)\nconst regs = msg.payload;\n\nconst high = Number(regs[0]);\nconst low = Number(regs[1]);\n\n// Big-endian word order (high first)\nconst rawValue = (high << 16) + low;\n\n// Apply scale 0.001 V (equivalent to /1000)\nconst voltage = rawValue * 0.001;\n\nmsg.payload = { ac_load: { voltage } };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1480,
+        "wires": [
+            [
+                "b2c75db199112fe5"
+            ]
+        ]
     }
 ]
