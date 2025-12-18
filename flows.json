@@ -155,6 +155,36 @@
         "groupType": "default"
     },
     {
+        "id": "9a6dc5e2e9734bda",
+        "type": "modbus-client",
+        "name": "schneider",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.0.88",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "51",
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
         "id": "16184caa5c9a6b16",
         "type": "modbus-read",
         "z": "b72ff8a98c4fd15a",
@@ -959,8 +989,7 @@
         "y": 960,
         "wires": [
             [
-                "48c35f0b074a1186",
-                "6b5286f729b72ffb"
+                "48c35f0b074a1186"
             ]
         ]
     },
@@ -1010,22 +1039,6 @@
         "valueType": "msg",
         "x": 1220,
         "y": 960,
-        "wires": []
-    },
-    {
-        "id": "6b5286f729b72ffb",
-        "type": "debug",
-        "z": "b72ff8a98c4fd15a",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 950,
-        "y": 1140,
         "wires": []
     },
     {
@@ -1128,6 +1141,55 @@
         "valueType": "msg",
         "x": 980,
         "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8acc16014936bad3",
+        "type": "modbus-read",
+        "z": "b72ff8a98c4fd15a",
+        "name": "Read Registry Inverter",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "0x009A",
+        "quantity": "",
+        "rate": "",
+        "rateUnit": "",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "9a6dc5e2e9734bda",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 180,
+        "y": 1120,
+        "wires": [
+            [
+                "f9b67163c5de79a4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f9b67163c5de79a4",
+        "type": "debug",
+        "z": "b72ff8a98c4fd15a",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 1300,
         "wires": []
     }
 ]
