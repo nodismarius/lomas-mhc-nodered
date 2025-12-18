@@ -330,7 +330,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "2b70db4ff6f3070a",
-        "order": 3,
+        "order": 4,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -411,7 +411,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "2b70db4ff6f3070a",
-        "order": 5,
+        "order": 6,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -519,7 +519,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "2b70db4ff6f3070a",
-        "order": 1,
+        "order": 2,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -572,7 +572,7 @@
         "type": "ui-text",
         "z": "b72ff8a98c4fd15a",
         "group": "2b70db4ff6f3070a",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "name": "Charger Stage",
@@ -707,7 +707,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "BatTemp",
         "group": "2b70db4ff6f3070a",
-        "order": 4,
+        "order": 5,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -1211,7 +1211,9 @@
         "x": 490,
         "y": 1240,
         "wires": [
-            []
+            [
+                "b52476c64ff3b876"
+            ]
         ]
     },
     {
@@ -1407,7 +1409,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "2b70db4ff6f3070a",
-        "order": 2,
+        "order": 3,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -1461,7 +1463,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "2b70db4ff6f3070a",
-        "order": 6,
+        "order": 7,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -1515,7 +1517,7 @@
         "z": "b72ff8a98c4fd15a",
         "name": "",
         "group": "2b70db4ff6f3070a",
-        "order": 7,
+        "order": 8,
         "value": "payload",
         "valueType": "msg",
         "width": 3,
@@ -1561,6 +1563,81 @@
         "y": 1380,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "969825fbb9b94de9",
+        "type": "ui-gauge",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "group": "2b70db4ff6f3070a",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-tile",
+        "gstyle": "needle",
+        "title": "Error Status",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "Fara Erori",
+                "textType": "str"
+            },
+            {
+                "from": "1",
+                "color": "#ff0200",
+                "text": "Erori Prezente",
+                "textType": "str"
+            }
+        ],
+        "min": 0,
+        "max": 10,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1250,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b52476c64ff3b876",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.status, \"active_faults\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 980,
+        "y": 1220,
+        "wires": [
+            [
+                "969825fbb9b94de9"
+            ]
         ]
     }
 ]
