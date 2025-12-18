@@ -1196,7 +1196,7 @@
         "id": "b0e63c4007d83937",
         "type": "function",
         "z": "b72ff8a98c4fd15a",
-        "name": "function 2",
+        "name": "parse name",
         "func": "// msg.payload is an array of 8 uint16 (for str16 Device Name)\nconst regs = msg.payload;\n\nlet deviceName = '';\nfor (let reg of regs) {\n  // LSB first for Conext strings\n  deviceName += String.fromCharCode(Number(reg) & 0xFF) + String.fromCharCode((Number(reg) >> 8) & 0xFF);\n}\n\n// Trim null chars and extra padding\ndeviceName = deviceName.replace(/\\0/g, '').trim();\n\n// Output as JSON\nmsg.payload = { info: { device_name: deviceName } };\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -1204,7 +1204,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 470,
         "y": 1120,
         "wires": [
             [
@@ -1216,7 +1216,7 @@
         "id": "62c66d3893c8b193",
         "type": "modbus-read",
         "z": "b72ff8a98c4fd15a",
-        "name": "Read Registry Inverter Name",
+        "name": "Read Registry Inverter status",
         "topic": "",
         "showStatusActivities": false,
         "logIOActivities": false,
@@ -1249,7 +1249,7 @@
         "id": "347add4fe59ea4ec",
         "type": "function",
         "z": "b72ff8a98c4fd15a",
-        "name": "function 3",
+        "name": "status flags",
         "func": "// msg.payload is array of 14 uint16 (regs 67-80 from main read)\n// Assume flow.get('warningBitmap1') for reg 195 (set from separate read)\n\nconst regs = msg.payload;\nconst warningBitmap1 = flow.get('warningBitmap1') || 0;  // Fallback 0\n\n// Helper to get active items from bitmap\nfunction getActive(bitMap, mapObj) {\n  const active = [];\n  for (let bit = 0; bit < 16; bit++) {\n    if (bitMap & (1 << bit)) {\n      active.push(mapObj[bit] || `Unknown Bit${bit}`);\n    }\n  }\n  return active;\n}\n\n// Fault mappings from doc (sections 2.2-2.5)\nconst faultMap0 = { // Reg 67\n  0: 'F1: AC Output Undervoltage Shutdown',\n  1: 'F2: AC Output Overvoltage Shutdown',\n  2: 'F17: AC BackFeed Fault (AC1 L1)',\n  3: 'F18: AC BackFeed Fault (AC1 L2)',\n  4: 'F19: AC BackFeed Fault (AC2 L1)',\n  5: 'F20: AC Backfeed Fault (AC2 L2)',\n  6: 'F21: AC Backfeed Fault (L1L2 Weld)',\n  7: 'F22: AC Backfeed Fault (Line 1 Weld)',\n  8: 'F23: Anti-Islanding Fault (Over Freq)',\n  9: 'F24: Anti-Islanding Fault (Under Freq)',\n  10: 'F25: Anti-Islanding (Over Freq)',\n  11: 'F26: Anti-Islanding (Under Freq)',\n  12: 'F27: Anti-Islanding (Over Voltage Line 1)',\n  13: 'F28: Anti-Islanding (Over Voltage Line 2)',\n  14: 'F29: Anti-Islanding (Over Voltage)',\n  15: 'F30: Anti-Islanding (Over voltage L1L2)'\n};\n\nconst faultMap1 = { // Reg 68\n  0: 'F31: Anti-Islanding (Over Voltage L1 Slow)',\n  1: 'F32: Anti-Islanding (Over Voltage L2 Slow)',\n  2: 'F33: Anti-Islanding (Over Voltage L1L2 Slow)',\n  3: 'F34: Anti-Islanding (Under Voltage L1 Slow)',\n  4: 'F35: Anti-Islanding (Under Voltage L2 Slow)',\n  5: 'F36: Anti-Islanding (Under Voltage L1L2 Slow)',\n  6: 'F37: Anti-Islanding (Under Voltage L1 Fast)',\n  7: 'F38: Anti-Islanding (Under Voltage L2 Fast)',\n  8: 'F39: Anti-Islanding (Under Voltage)',\n  9: 'F40: Anti-Islanding (Under Voltage L1L2 Fast)',\n  10: 'F41: APS Under Voltage',\n  11: 'F42: APS Over Voltage',\n  12: 'F44: Battery Over Temperature',\n  13: 'F45: Capacitor Over Temperature',\n  14: 'F46: Controller Error',\n  15: 'F47: DC Under Voltage Immediate'\n};\n\nconst faultMap2 = { // Reg 69\n  0: 'F48: DC Under-Voltage Shutdown',\n  1: 'F49: DC Over-Voltage Shutdown',\n  2: 'F51: EEPROM Error',\n  3: 'F52: EEPROM Error (Cal Fail)',\n  4: 'F53: EEPROM Error (Config Fail)',\n  5: 'F54: EEPROM Error (Default Fail)',\n  6: 'F55: EEPROM Error (Log Fail)',\n  7: 'F56: EEPROM Error (Strings Fail)',\n  8: 'F57: FET1 Over-Temperature Shutdown',\n  9: 'F58: FET2 Over-Temperature Shutdown',\n  10: 'F59: Configuration Copy Error',\n  11: 'F60: Invalid Fault',\n  12: 'F61: Invalid Warning',\n  13: 'F62: Invalid Interrupt',\n  14: 'F63: AC Overload (Primary)',\n  15: 'F64: AC Overload (Secondary 1s)'\n};\n\nconst faultMap3 = { // Reg 70\n  0: 'F65: AC Overload (2s)',\n  1: 'F66: System Configuration Error',\n  2: 'F67: Watchdog Reset',\n  3: 'F68: Transformer Over-Temperature',\n  4: 'F69: Synchronization Signal Fault',\n  5: 'F70: Three Phase Configuration Fault',\n  6: 'F90: External BMS Disconnected',\n  7: 'F71: Battery Discharge Over Current',\n  8: 'F72: External Contactor Malfunction',\n  9: 'F73: Battery Charge Over Current',\n  10: 'F74: Battery Under Voltage',\n  11: 'F75: Battery Over Voltage',\n  12: 'F91: SOC Level Lost',\n  13: 'F92: Gateway Comms Lost',\n  14: 'F93: SunSpec Controller Comms Lost'\n};\n\n// Warning mappings (sections 2.6, 2.16)\nconst warningMap0 = { // Reg 71\n  0: 'W44: Battery Over Temperature',\n  1: 'W45: Capacitor Over Temperature',\n  2: 'W48: DC Under Voltage',\n  3: 'W49: DC Over Voltage',\n  4: 'W57: FET1 Over Temperature',\n  5: 'W58: FET2 Over Temperature',\n  6: 'W63: AC Overload',\n  7: 'W64: AC Overload',\n  8: 'W68: Transformer Over Temperature',\n  9: 'W70: Check Phase Configuration',\n  10: 'W94: Remote Power Off',\n  11: 'W95: Equalize Abort',\n  12: 'W96: Cannot Equalize',\n  13: 'W97: Battery Temperature Sensor Failure',\n  14: 'W500: Lost Network Connection',\n  15: 'W501: Non Volatile Memory Warning'\n};\n\nconst warningMap1 = { // Reg 195\n  0: 'W91: SOC Level Lost',\n  1: 'W92: Gateway Comms Lost',\n  2: 'W93: SunSpec Controller Comms Lost'\n};\n\n// Parse\nconst faults = [\n  ...getActive(Number(regs[0]), faultMap0),  // 67\n  ...getActive(Number(regs[1]), faultMap1),  // 68\n  ...getActive(Number(regs[2]), faultMap2),  // 69\n  ...getActive(Number(regs[3]), faultMap3)   // 70\n];\n\nconst warnings = [\n  ...getActive(Number(regs[4]), warningMap0),  // 71\n  ...getActive(warningBitmap1, warningMap1)    // 195\n];\n\nconst configErrorsPresent = (Number(regs[13]) << 16) + Number(regs[12]) > 0;  // Reg 79-80 uint32\nconst configErrors = configErrorsPresent ? ['Configuration Errors Detected (Raw Value: ' + ((Number(regs[13]) << 16) + Number(regs[12])) + ')'] : [];  // No detailed bits in doc\n\nconst status = {\n  active_faults: !!Number(regs[9]),  // 76\n  faults: faults,\n  active_warnings: !!Number(regs[10]),  // 77\n  warnings: warnings,\n  config_errors: configErrors\n};\n\n// Assemble JSON\nmsg.payload = { status };\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -1257,7 +1257,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 470,
         "y": 1240,
         "wires": [
             [
@@ -1279,6 +1279,75 @@
         "statusType": "auto",
         "x": 1950,
         "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "0a2791be258dd311",
+        "type": "modbus-read",
+        "z": "b72ff8a98c4fd15a",
+        "name": "Read Registry Inverter AC parameters",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "10",
+        "dataType": "HoldingRegister",
+        "adr": "0x008C",
+        "quantity": "22",
+        "rate": "5",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "9a6dc5e2e9734bda",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 210,
+        "y": 1340,
+        "wires": [
+            [
+                "97fafa5a78218665"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "97fafa5a78218665",
+        "type": "function",
+        "z": "b72ff8a98c4fd15a",
+        "name": "AC parameters",
+        "func": "// msg.payload is array of 22 uint16 (regs 141-162 from address 0x008C quantity 22)\nconst regs = msg.payload;\n\n// Helpers\nfunction uint32(high, low) {\n  return (Number(high) << 16) + Number(low);\n}\n\nfunction sint32(high, low) {\n  let val = uint32(high, low);\n  return val > 0x7FFFFFFF ? val - 0x100000000 : val;\n}\n\nconst ac_load = {\n  voltage: uint32(regs[0], regs[1]) / 1000,         // Reg 141 (total V)\n  current: sint32(regs[10], regs[11]) / 1000,       // Reg 151 (total A)\n  frequency: Number(regs[12]) / 100,                // Reg 153 (Hz)\n  power_w: sint32(regs[14], regs[15]),              // Reg 155 (W)\n  power_va: sint32(regs[20], regs[21])              // Reg 161 (VA)\n};\n\nmsg.payload = { ac_load };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1340,
+        "wires": [
+            [
+                "b334487caf86ec19"
+            ]
+        ]
+    },
+    {
+        "id": "b334487caf86ec19",
+        "type": "debug",
+        "z": "b72ff8a98c4fd15a",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1890,
+        "y": 1060,
         "wires": []
     }
 ]
