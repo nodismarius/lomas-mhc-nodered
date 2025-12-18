@@ -115,7 +115,7 @@
     {
         "id": "2b70db4ff6f3070a",
         "type": "ui-group",
-        "name": "Real Time Status",
+        "name": "Monitorizare In Timp Real",
         "page": "8f70105477d90261",
         "width": "3",
         "height": 1,
@@ -129,7 +129,7 @@
     {
         "id": "44eebceeecbe645f",
         "type": "ui-group",
-        "name": "Metrics",
+        "name": "Statistici",
         "page": "8f70105477d90261",
         "width": "3",
         "height": 1,
@@ -143,7 +143,7 @@
     {
         "id": "b7ed27f8da190684",
         "type": "ui-group",
-        "name": "Device Info",
+        "name": "Info Device",
         "page": "8f70105477d90261",
         "width": "3",
         "height": 1,
