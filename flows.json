@@ -1155,7 +1155,7 @@
         "showWarnings": true,
         "unitid": "",
         "dataType": "HoldingRegister",
-        "adr": "0x0066",
+        "adr": "0x008C",
         "quantity": "2",
         "rate": "2",
         "rateUnit": "s",
