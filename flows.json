@@ -1402,7 +1402,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "$lookup($$.payload.ac_load, \"power\")",
+                "to": "$lookup($$.payload.ac_load, \"power_w\")",
                 "tot": "jsonata"
             }
         ],
