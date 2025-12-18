@@ -1259,11 +1259,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
+        "x": 540,
         "y": 1340,
         "wires": [
             [
-                "2fe1d28f5dcd9f24"
+                "2fe1d28f5dcd9f24",
+                "55ca63e347351a66",
+                "8ad7490ed8ef269f",
+                "f207929caeaeaf64"
             ]
         ]
     },
@@ -1334,5 +1337,86 @@
         "x": 1230,
         "y": 1260,
         "wires": []
+    },
+    {
+        "id": "55ca63e347351a66",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.ac_load, \"current\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1380,
+        "wires": [
+            [
+                "8cfcb3d091141c26"
+            ]
+        ]
+    },
+    {
+        "id": "8ad7490ed8ef269f",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.ac_load, \"frequency\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1420,
+        "wires": [
+            [
+                "8cfcb3d091141c26"
+            ]
+        ]
+    },
+    {
+        "id": "f207929caeaeaf64",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.ac_load, \"power\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1460,
+        "wires": [
+            [
+                "8cfcb3d091141c26"
+            ]
+        ]
     }
 ]
