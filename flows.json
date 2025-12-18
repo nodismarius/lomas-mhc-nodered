@@ -1211,9 +1211,7 @@
         "x": 490,
         "y": 1240,
         "wires": [
-            [
-                "2e020aeaf572046f"
-            ]
+            []
         ]
     },
     {
@@ -1264,7 +1262,9 @@
         "x": 520,
         "y": 1340,
         "wires": [
-            []
+            [
+                "2fe1d28f5dcd9f24"
+            ]
         ]
     },
     {
@@ -1293,10 +1293,37 @@
         ]
     },
     {
-        "id": "2e020aeaf572046f",
+        "id": "2fe1d28f5dcd9f24",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload.ac_load, \"voltage\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1340,
+        "wires": [
+            [
+                "8cfcb3d091141c26"
+            ]
+        ]
+    },
+    {
+        "id": "8cfcb3d091141c26",
         "type": "debug",
         "z": "b72ff8a98c4fd15a",
-        "name": "debug 2",
+        "name": "debug 1",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -1304,8 +1331,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 870,
-        "y": 1240,
+        "x": 1230,
+        "y": 1260,
         "wires": []
     }
 ]
