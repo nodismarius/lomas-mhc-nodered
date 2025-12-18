@@ -1177,22 +1177,6 @@
         ]
     },
     {
-        "id": "f9b67163c5de79a4",
-        "type": "debug",
-        "z": "b72ff8a98c4fd15a",
-        "name": "debug 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1940,
-        "y": 940,
-        "wires": []
-    },
-    {
         "id": "b0e63c4007d83937",
         "type": "function",
         "z": "b72ff8a98c4fd15a",
@@ -1208,7 +1192,7 @@
         "y": 1120,
         "wires": [
             [
-                "f9b67163c5de79a4"
+                "bd5bf6a80864d08a"
             ]
         ]
     },
@@ -1260,26 +1244,8 @@
         "x": 470,
         "y": 1240,
         "wires": [
-            [
-                "133dc2c40360e669"
-            ]
+            []
         ]
-    },
-    {
-        "id": "133dc2c40360e669",
-        "type": "debug",
-        "z": "b72ff8a98c4fd15a",
-        "name": "debug 1",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1950,
-        "y": 1000,
-        "wires": []
     },
     {
         "id": "0a2791be258dd311",
@@ -1311,9 +1277,7 @@
             [
                 "97fafa5a78218665"
             ],
-            [
-                "9998c58c4dfb7216"
-            ]
+            []
         ]
     },
     {
@@ -1331,16 +1295,41 @@
         "x": 520,
         "y": 1340,
         "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd5bf6a80864d08a",
+        "type": "change",
+        "z": "b72ff8a98c4fd15a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($$.payload, \"deviceName\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 1120,
+        "wires": [
             [
-                "b334487caf86ec19"
+                "17e3a6c009f5e52b"
             ]
         ]
     },
     {
-        "id": "b334487caf86ec19",
+        "id": "17e3a6c009f5e52b",
         "type": "debug",
         "z": "b72ff8a98c4fd15a",
-        "name": "debug 3",
+        "name": "debug 1",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -1348,93 +1337,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1890,
-        "y": 1060,
+        "x": 1230,
+        "y": 1120,
         "wires": []
-    },
-    {
-        "id": "9998c58c4dfb7216",
-        "type": "debug",
-        "z": "b72ff8a98c4fd15a",
-        "name": "debug 4",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 470,
-        "y": 1420,
-        "wires": []
-    },
-    {
-        "id": "7733ca112a2060f9",
-        "type": "modbus-read",
-        "z": "b72ff8a98c4fd15a",
-        "name": "Read Registry Inverter AC parameters",
-        "topic": "",
-        "showStatusActivities": false,
-        "logIOActivities": false,
-        "showErrors": false,
-        "showWarnings": true,
-        "unitid": "10",
-        "dataType": "HoldingRegister",
-        "adr": "0x008C",
-        "quantity": "2",
-        "rate": "5",
-        "rateUnit": "s",
-        "delayOnStart": false,
-        "enableDeformedMessages": false,
-        "startDelayTime": "",
-        "server": "9a6dc5e2e9734bda",
-        "useIOFile": false,
-        "ioFile": "",
-        "useIOForPayload": false,
-        "emptyMsgOnFail": false,
-        "x": 190,
-        "y": 1480,
-        "wires": [
-            [
-                "dd213f547ebc92e4"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "b2c75db199112fe5",
-        "type": "debug",
-        "z": "b72ff8a98c4fd15a",
-        "name": "debug 5",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 800,
-        "y": 1500,
-        "wires": []
-    },
-    {
-        "id": "dd213f547ebc92e4",
-        "type": "function",
-        "z": "b72ff8a98c4fd15a",
-        "name": "AC parameters",
-        "func": "// msg.payload is array of 2 uint16 (low word index 0, high word index 1 for little-endian)\nconst regs = msg.payload;\n\nconst low = Number(regs[0]);\nconst high = Number(regs[1]);\n\n// Little-endian word: raw = (high << 16) + low? No: since received as low first, to make big-endian equivalent, raw = (high << 16) + low? Wait, no:\n\n// If device sends low word first (regs[0]=low, regs[1]=high), then raw = (regs[1] << 16) + regs[0]\n\nconst rawValue = (high << 16) + low;\n\n// Apply scale 0.001 V (/1000)\nconst voltage = rawValue / 1000;\n\nmsg.payload = { ac_load: { voltage } };\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 520,
-        "y": 1480,
-        "wires": [
-            [
-                "b2c75db199112fe5"
-            ]
-        ]
     }
 ]
