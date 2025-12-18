@@ -1422,7 +1422,7 @@
         "type": "function",
         "z": "b72ff8a98c4fd15a",
         "name": "AC parameters",
-        "func": "// msg.payload is array of 2 uint16 (high word index 0, low word index 1)\nconst regs = msg.payload;\n\nconst high = Number(regs[0]);\nconst low = Number(regs[1]);\n\n// Big-endian word order (high first)\nconst rawValue = (high << 16) + low;\n\n// Apply scale 0.001 V (equivalent to /1000)\nconst voltage = rawValue * 0.001;\n\nmsg.payload = { ac_load: { voltage } };\nreturn msg;",
+        "func": "// msg.payload is array of 2 uint16 (low word index 0, high word index 1 for little-endian)\nconst regs = msg.payload;\n\nconst low = Number(regs[0]);\nconst high = Number(regs[1]);\n\n// Little-endian word: raw = (high << 16) + low? No: since received as low first, to make big-endian equivalent, raw = (high << 16) + low? Wait, no:\n\n// If device sends low word first (regs[0]=low, regs[1]=high), then raw = (regs[1] << 16) + regs[0]\n\nconst rawValue = (high << 16) + low;\n\n// Apply scale 0.001 V (/1000)\nconst voltage = rawValue / 1000;\n\nmsg.payload = { ac_load: { voltage } };\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
