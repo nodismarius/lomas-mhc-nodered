@@ -1398,7 +1398,9 @@
             [
                 "b2c75db199112fe5"
             ],
-            []
+            [
+                "bc9f2d271f8f2708"
+            ]
         ]
     },
     {
@@ -1415,6 +1417,22 @@
         "statusType": "auto",
         "x": 570,
         "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "bc9f2d271f8f2708",
+        "type": "debug",
+        "z": "b72ff8a98c4fd15a",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 1580,
         "wires": []
     }
 ]
