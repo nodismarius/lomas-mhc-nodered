@@ -1155,7 +1155,7 @@
         "showWarnings": true,
         "unitid": "51",
         "dataType": "HoldingRegister",
-        "adr": "0x0098",
+        "adr": "0x0066",
         "quantity": "1",
         "rate": "2",
         "rateUnit": "s",
