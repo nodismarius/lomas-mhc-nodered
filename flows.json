@@ -1308,7 +1308,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "$lookup($$.payload, \"device_name\")",
+                "to": "$lookup($$.payload, \"deviceName\")",
                 "tot": "jsonata"
             }
         ],
