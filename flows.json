@@ -498,6 +498,13 @@
                 "pt": "msg",
                 "to": "$lookup($$.payload.status, \"power_watts\")",
                 "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "turbinePower",
+                "tot": "str"
             }
         ],
         "action": "",
