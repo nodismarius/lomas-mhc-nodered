@@ -509,7 +509,8 @@
         "y": 680,
         "wires": [
             [
-                "529f4cbcded4d0cf"
+                "529f4cbcded4d0cf",
+                "2d7a5c72571fd27f"
             ]
         ]
     },
@@ -1638,6 +1639,68 @@
             [
                 "969825fbb9b94de9"
             ]
+        ]
+    },
+    {
+        "id": "2d7a5c72571fd27f",
+        "type": "ui-chart",
+        "z": "b72ff8a98c4fd15a",
+        "group": "44eebceeecbe645f",
+        "name": "",
+        "label": "Putere Turbina",
+        "order": 4,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "2000",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": "12",
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 1520,
+        "y": 700,
+        "wires": [
+            []
         ]
     }
 ]
