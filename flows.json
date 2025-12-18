@@ -1531,19 +1531,19 @@
         "suffix": "",
         "segments": [
             {
-                "from": "45",
+                "from": "49",
                 "color": "#ea5353",
                 "text": "",
                 "textType": "label"
             },
             {
-                "from": "55",
+                "from": "50",
                 "color": "#5cd65c",
                 "text": "",
                 "textType": "label"
             },
             {
-                "from": "60",
+                "from": "51",
                 "color": "#ff0026",
                 "text": "",
                 "textType": "label"
