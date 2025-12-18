@@ -1549,8 +1549,8 @@
                 "textType": "label"
             }
         ],
-        "min": "45",
-        "max": "60",
+        "min": "49",
+        "max": "51",
         "sizeThickness": 16,
         "sizeGap": 4,
         "sizeKeyThickness": 8,
